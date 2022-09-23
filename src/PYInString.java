@@ -42,5 +42,6 @@ public class PYInString {
         s = s.toUpperCase();    //대소문자 구별 없음
 
         return s.chars().filter(e -> 'P' == e).count() == s.chars().filter(e -> 'Y' == e).count();
+        //'P' == e 인 element의 .count() 랑 'Y' == 인 element의 .count()랑 비교
     }
 }
