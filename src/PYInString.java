@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Locale;
 import java.util.StringTokenizer;
 
 public class PYInString {
@@ -36,5 +37,10 @@ public class PYInString {
         if(cnt != 0)
             return false;
         return true;
+    }
+    static boolean solutionV2(String s){
+        s = s.toUpperCase();    //대소문자 구별 없음
+
+        return s.chars().filter(e -> 'P' == e).count() == s.chars().filter(e -> 'Y' == e).count();
     }
 }
