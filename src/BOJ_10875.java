@@ -1,9 +1,10 @@
+import java.util.Arrays;
+
 public class BOJ_10875 {
 
+    static MyReader sc = new MyReader();
+    static StringBuilder sb = new StringBuilder();
 
-    public static void main(String[] args) {
-
-    }
     static class Elem implements Comparable<Elem> {
 
         public String name;
@@ -23,13 +24,32 @@ public class BOJ_10875 {
     }
 
     static int N;
+    static Elem[] arr;
 
     static void input() {
-
+        N = sc.nextInt();
+        arr = new Elem[N];
+        for(int i=0;i<N;i++){
+            arr[i] = new Elem();
+            arr[i].name = sc.next();
+            arr[i].kor = sc.nextInt();
+            arr[i].eng = sc.nextInt();
+            arr[i].math = sc.nextInt();
+        }
     }
 
     static void pro() {
+        Arrays.sort(arr);
+        for (int i = 0; i < N; i++) {
+            sb.append(arr[i].name).append('\n');
+        }
+        System.out.println(sb.toString());
 
+    }
+
+    public static void main(String[] args) {
+        input();
+        pro();
     }
 }
 
