@@ -33,17 +33,18 @@ public class BOJ_7795 {
     }
 
     static int lower_bound(int[] A, int L, int R, int X) {
-        // A[L...R] 에서 X 미만의 수 중 제일 오른쪽 인덱스를 return 하는 함수
-        // 그런 게 없다면 L - 1 을 return 한다
+        //TODO : A[L...R]에서 X미만의 수 중 제일 오른쪽 인덱스를 return하는 함수
+        // 그런 게 없다면 L - 1 을 return 한다 왜 L - 1 ? :
 
         int res = L - 1;  // 만약 A[L...R] 중 X 이하의 수가 없다면 L - 1 을 return 한다.
         while (L <= R) {
             int mid = (L + R) / 2;
-            if (A[mid] < X) {
+
+            if (A[mid] < X) {  //[L mid (X) R] 오른쪽으로 확대
                 res = mid;
-                L = mid + 1;
-            } else {
-                R = mid - 1;
+                L = mid + 1;   //[mid L (X) R]
+            } else {          //[L (X) mid R] 오른쪽으로 확대
+                R = mid - 1;  //[L (X) R mid]
             }
         }
         return res;
