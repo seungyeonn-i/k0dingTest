@@ -9,8 +9,8 @@ public class BOJ_2805 {
     static void input() {
         N = sc.nextInt();
         M = sc.nextInt();
-        arr = new int[N];
-        for (int i = 0; i < N; i++) {
+        arr = new int[N+1];
+        for (int i = 1; i <= N; i++) {
             arr[i] = sc.nextInt();
         }
     }
