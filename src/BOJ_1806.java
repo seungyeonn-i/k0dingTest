@@ -19,23 +19,27 @@ public class BOJ_1806 {
         }
     }
 
-    static void pro() {
-        int R = 0, sum = 0, ans = N + 1;
-        for (int L = 1; L <= N; L++) {
+    static void pro(){
+        int R = 0, sum = 0, ans = N + 1; //ans=s를 넘는 값들 중 가장 짧은거 기록
+        for(int L = 1;L <= N;L++){
+            // L - 1 을 구간에서 제외하기
             sum -= A[L - 1];
-            while (R + 1 <= N && sum < S) {
+            // R을 옮길 수 있을 때까지 옮기기 (합이 S보다 커지는 순간 멈춤)
+            while(R + 1 <=N && sum < S)
+            {
                 R++;
                 sum += A[R];
             }
-            if (sum >= S) {
+            //[L...R]의 합, 즉 sum이 조건을 만족하면 정답 갱신
+            if(sum >= S){
                 ans = Math.min(ans, R - L + 1);
             }
         }
-        if (ans == N + 1) {
+        //ans값 보고 불가능 판단하기
+        if(ans == N + 1){//min이 갱신이 안됐다면
             ans = 0;
         }
         System.out.println(ans);
-
     }
 
     public static void main(String[] args) {
