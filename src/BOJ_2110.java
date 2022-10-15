@@ -14,7 +14,7 @@ public class BOJ_2110 {
     static int C,N;
     static int[] A;
 
-    static MyScanner sc = new MyScanner();
+    static MyScanner2110 sc = new MyScanner2110();
     StringBuilder sb = new StringBuilder();
     static void input() {
         N = sc.nextInt();
@@ -71,14 +71,13 @@ public class BOJ_2110 {
         pro();
     }
 
-
 }
-class MyScanner{
+class MyScanner2110{
 
     BufferedReader br;
     StringTokenizer st;
 
-    public MyScanner(){
+    public MyScanner2110(){
         br = new BufferedReader(new InputStreamReader(System.in));
     }
 
@@ -110,11 +109,6 @@ class MyScanner{
         }
         return str;
     }
-
-
-
-
-
 }
 
 
