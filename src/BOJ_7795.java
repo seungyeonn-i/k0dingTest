@@ -13,7 +13,7 @@ public class BOJ_7795 {
 
      */
 
-    static MyScanner sc = new MyScanner();
+    static MyScanners sc = new MyScanners();
     static StringBuilder sb = new StringBuilder();
 
     static int N, M;
@@ -73,11 +73,11 @@ public class BOJ_7795 {
 }
 
 
-class MyScanner{
+class MyScanners{
     BufferedReader br;
     StringTokenizer st;
 
-    public MyScanner() {
+    public MyScanners() {
         br = new BufferedReader(new InputStreamReader(System.in));
     }
 
