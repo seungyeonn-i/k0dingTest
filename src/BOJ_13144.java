@@ -25,7 +25,7 @@ public class BOJ_13144 {
         long ans = 0;
         for (int L = 1, R = 0; L <= N; L++) {
             // TODO : R을 옮길 수 있을 만큼 옮긴다
-            while (R + 1 <= N && cnt[A[R + 1]] == 0) {
+            while(R+1 <= N && cnt[A[R+1]] == 0 ){
                 R++;
                 cnt[A[R]]++;
             }
@@ -52,7 +52,6 @@ class MyScanner13144{
     }
 
     String next() {
-        String str="";
         while (st == null || !st.hasMoreElements()) {
             try {
                 st = new StringTokenizer(br.readLine());
