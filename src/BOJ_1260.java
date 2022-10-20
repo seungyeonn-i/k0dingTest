@@ -1,13 +1,11 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class BOJ_1260 {
     static int N,M,V;
-    static int adj[][];
+    static ArrayList<Integer>[] adj;
     static boolean visited[];
 
     static MyScanner1260 sc = new MyScanner1260();
@@ -17,26 +15,38 @@ public class BOJ_1260 {
         N = sc.nextInt();
         M = sc.nextInt();
         V = sc.nextInt();
-        adj = new int[N + 1][N + 1];
+//        adj = new int[N + 1][N + 1];
+        adj = new ArrayList[N + 1];
+        for (int i = 1; i <= N; i++) {
+            adj[i] = new ArrayList<Integer>();
+        }
         for (int i = 1; i <= M; i++) {
             int x = sc.nextInt(), y = sc.nextInt();
-            adj[x][y] = 1;
-            adj[y][x] = 1;
+//            adj[x][y] = 1,adj[y][x] = 1;
+
+            adj[x].add(y);
+            adj[y].add(x);
+        }
+        for (int i = 1; i <= N; i++) {
+            Collections.sort(adj[i]);
         }
 
     }
     static void dfs(int x) {
         visited[x] = true;
         sb.append(x).append(' ');
-//        for (int y : adj[x]) {
-//            if(visited[y]) continue;
-//            if(adj[x][y] == 0) continue;
-//
-//            dfs(y);
-//        }
 
+        // TODO : 인접 행렬
+        /*
         for(int y=1;y<=N;y++){
             if(adj[x][y] == 0)  continue;
+            if(visited[y]) continue;
+            dfs(y);
+        }
+        */
+
+        // TODO : 인접 리스트
+        for(int y : adj[x]){
             if(visited[y]) continue;
             dfs(y);
         }
@@ -50,17 +60,20 @@ public class BOJ_1260 {
             int x = que.poll();
             sb.append(x).append(' ');
 
-//            for (int y : adj[x]) {
-//                if(visited[y]) continue;
-//                if(adj[x][y] == 0) continue;
-//                que.add(y);
-//                visited[y] = true;
-//            }
 
+            // TODO : 인접 행렬
+            /*
             for (int y = 1; y <= N; y++) {
                 if(adj[x][y] == 0)  continue;
                 if(visited[y]) continue;
 
+                que.add(y);
+                visited[y] = true;
+            }
+            */
+            // TODO : 인접 리스트
+            for (int y : adj[x]) {
+                if(visited[y]) continue;
                 que.add(y);
                 visited[y] = true;
             }
