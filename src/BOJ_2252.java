@@ -1,4 +1,18 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Deque;
+import java.util.LinkedList;
+import java.util.StringTokenizer;
+
 public class BOJ_2252 {
+    static int[] indeg;
+    static int[][] adj;
+    static int N;
+
+    static StringBuilder sb = new StringBuilder();
+    static MyScanner2252 sc = new MyScanner2252();
+
     static void input(){
         //Adjacent List 생성 및 indegree 계산하기
     }
@@ -26,3 +40,51 @@ public class BOJ_2252 {
     }
 
 }
+
+
+
+class MyScanner2252{
+    BufferedReader br;
+    StringTokenizer st;
+
+    public MyScanner2252() {
+        br = new BufferedReader(new InputStreamReader(System.in));
+    }
+
+    String next() {
+        while (st == null || !st.hasMoreElements()) {
+            try {
+                st = new StringTokenizer(br.readLine());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return st.nextToken();
+    }
+
+    int nextInt() {
+        return Integer.parseInt(next());
+    }
+
+    long nextLong() {
+        return Long.parseLong(next());
+    }
+
+    double nextDouble() {
+        return Double.parseDouble(next());
+    }
+
+    String nextLine() {
+        String str = "";
+        try {
+            str = br.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return str;
+    }
+
+
+}
+
+
