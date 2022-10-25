@@ -25,15 +25,17 @@ public class BOJ_2252 {
         // 3. 새롭게 "정렬될 수 있는" 정점
 
         Deque<Integer> queue = new LinkedList<>();
-        for(int i=1;i<=N;i++){
+        for(int i=1;i<=N;i++){ // 정렬 할 수 있어서 정렬 결과에 추가
             if(indeg[i] == 0) queue.add(i);
         }
         while(!queue.isEmpty()){
             int x = queue.poll();
             sb.append(x).append(' ');
+
             for(int y : adj[x]){
-                indeg[y]--;
-                if(indeg[y] == 0) queue.add(y);
+                indeg[y]--; //감소 하고 나서
+                if(indeg[y] == 0) queue.add(y); // indeg[y]==0인건 딱 한순간 밖에 없음
+
             }
         }
         System.out.println(sb);
