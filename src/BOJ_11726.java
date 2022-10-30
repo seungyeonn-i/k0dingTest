@@ -14,8 +14,9 @@ public class BOJ_11726 {
         N = sc.nextInt();
     }
     static void pro() {
-        dy = new int[N + 1];
-
+//        dy = new int[N + 1];
+//        dy = new int[1005];
+        dy = new int[N + 5];
         dy[1] = 1;
         dy[2] = 2;
 
