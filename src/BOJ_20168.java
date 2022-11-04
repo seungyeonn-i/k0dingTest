@@ -14,12 +14,10 @@ public class BOJ_20168 {
         B = sc.nextInt();
         C = sc.nextInt();
 
-        edges = new ArrayList[N];
+        edges = new ArrayList[N+1];
         dist = new int[N + 1];
 
-        for (int i = 1; i <= N; i++) {
-            edges[i] = new ArrayList<>();
-        }
+        for (int i = 1; i <= N; i++) edges[i] = new ArrayList<>();
 
         for (int i = 1; i <= M; i++) {
             int from = sc.nextInt();
@@ -69,15 +67,15 @@ public class BOJ_20168 {
             }
 
         }
+        System.out.println(dist[B]);
 
     }
 
-    static void pro() {
 
-    }
 
     public static void main(String[] args) {
         input();
+        dijkstra(A);
 
     }
 
