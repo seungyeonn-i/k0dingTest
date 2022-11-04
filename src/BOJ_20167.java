@@ -68,7 +68,7 @@ public class BOJ_20167 {
         for (int R = 1; R <= N; R++) {
             dy[R] = dy[R - 1];
             for (Interval i : intervals[R]) {
-                dy[R] = Math.max(dy[R],dy[(int) (i.left -1)] + i.satisfy)
+                dy[R] = Math.max(dy[R], dy[(int) (i.left - 1)] + i.satisfy);
             }
         }
         System.out.println(dy[(int) N]);
@@ -76,7 +76,7 @@ public class BOJ_20167 {
 
     public static void main(String[] args) {
         input();
-        dp();
+        pro();
     }
 
 }
