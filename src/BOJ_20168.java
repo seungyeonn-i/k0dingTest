@@ -4,7 +4,10 @@ public class BOJ_20168 {
     static int N,M,A,B,C;
 //    static int[][] adj;
     static int[] dist;
-    static ArrayList<Edge>[] edges;
+    static ArrayList<Info>[] edges;
+    static long[] d;
+    static long INF = 10000000000000001L;
+
 
     static Scanner sc = new Scanner(System.in);
     static void input() {
@@ -15,36 +18,38 @@ public class BOJ_20168 {
         C = sc.nextInt();
 
         edges = new ArrayList[N+1];
-        dist = new int[N + 1];
+        d = new long[N + 1];
+
 
         for (int i = 1; i <= N; i++) edges[i] = new ArrayList<>();
 
         for (int i = 1; i <= M; i++) {
             int from = sc.nextInt();
             int to = sc.nextInt();
-            int weight = sc.nextInt();
-            edges[from].add(new Edge(to, weight));
+            long weight = sc.nextLong();
+            edges[from].add(new Info(to, weight));
+            edges[to].add(new Info(from, weight));
         }
     }
     static class Info{
         int idx;
-        int dist;
+        long length;
 
-        public Info(int idx, int dist) {
+        public Info(int idx, long length) {
             this.idx = idx;
-            this.dist = dist;
+            this.length = length;
         }
     }
-    static class Edge{
-        int to;
-        int weight;
-
-        public Edge(int to, int weight) {
-            this.to = to;
-            this.weight = weight;
-        }
-    }
-
+//    static class Edge{
+//        int to;
+//        int weight;
+//
+//        public Edge(int to, int weight) {
+//            this.to = to;
+//            this.weight = weight;
+//        }
+//    }
+/*
     static void dijkstra(int start) {
 
         for (int i = 1; i < M; i++)  dist[i] = Integer.MAX_VALUE;
@@ -70,12 +75,52 @@ public class BOJ_20168 {
         System.out.println(dist[B]);
 
     }
+    */
+
+    static boolean dijkstra(long x) {
+        for (int i = 1; i <= N; i++) d[i] = INF;
+        d[A] = 0;
+        PriorityQueue<Info> pq = new PriorityQueue<>(Comparator.comparingLong(o -> o.length));
+
+        pq.add(new Info(A, 0));
+        while (!pq.isEmpty()) {
+            Info cur = pq.poll();
+            if(d[cur.idx] != cur.length) continue;
+            for (Info edge : edges[cur.idx]) {
+                if (edge.length > x) continue;
+                if (d[edge.idx] > d[cur.idx] + edge.length) {
+                    d[edge.idx] = d[cur.idx] + edge.length;
+                    pq.add(new Info(edge.idx, d[edge.idx]));
+                }
+            }
+        }
+        return d[B] <= C;
+    }
+
+
+
+    static void pro() {
+        d = new long[N + 1];
+        long left = 1, right = 1000000001, ans = right;
+        while (left <= right) {
+            long mid = left = right /2;
+
+            if (dijkstra(mid)) {
+                ans = mid;
+                right = mid = -1;
+            }else{
+                left = mid + 1;
+            }
+        }
+        if(ans == 1000000001) ans = -1;
+        System.out.println(ans);
+    }
 
 
 
     public static void main(String[] args) {
         input();
-        dijkstra(A);
+        pro();
 
     }
 
