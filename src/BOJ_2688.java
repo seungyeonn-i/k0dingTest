@@ -14,21 +14,23 @@ public class BOJ_2688 {
     }
 
     static void preprocess() {
-        Dy = new long[65][10];
+        Dy = new long[65][10];  // dy[자리수][시작하는 수]
 
         // 초기값 구하기
-        Dy[0][0] = 0;
-        Dy[0][1] = 1;
-        Dy[0][2] = 3;
-
-        for (int j = 2; j <= 9; j++) {
-            Dy[0][j] = Dy[0][j-1] + Dy[0][j-2];
+        for (int i = 0; i <= 9; i++) {
+            Dy[1][i] = 1;
         }
 
         // 점화식을 토대로 Dy 배열 채우기
-        for (int i = 1; i < 65; i++) {
-            for (int j = 2; j <= 9; j++) {
-                Dy[i][j] = Dy[i][j-1] + Dy[i][j-2];
+
+        // i자리의 j로 시작하는 수에 대한 줄어들지 않는 수의 개수는
+        // (i - 1)자리의 j로 시작하는 수부터 (i - 1)자리의 9까지의 줄어들지 않는 수의
+        // 개수를 더하면 된다.
+        for (int i = 2; i <= 64; i++) {
+            for (int j = 0; j <= 9; j++) {
+                for (int k = j; k <= 9; k++) {
+                    Dy[i][j] += Dy[i - 1][k];
+                }
             }
         }
 
@@ -37,7 +39,10 @@ public class BOJ_2688 {
     static void pro() {
         for (int rep = 1; rep <= Q; rep++) {
             int N = scan.nextInt();
-            long ans = Dy[N][9];
+            long ans = 0;
+            for (int i = 0; i <= 9; i++) {
+                ans += Dy[N][i];
+            }
             System.out.println(ans);
         }
     }
