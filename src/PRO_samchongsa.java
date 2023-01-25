@@ -7,7 +7,9 @@ public class PRO_samchongsa {
             for (int j = i; j < number.length; j++) {
                 for (int k = j; k < number.length; k++) {
                     if (number[i] + number[j] + number[k] == 0
-                            && !(number[i] == number[j]) && !(number[i] == number[k]) && !(number[j]==number[k])) {
+                            && !(i==j)
+                            && !(i==k)
+                            && !(j==k)){
                         System.out.println("number[i]+number[j]+number[k] = " + number[i]+number[j]+number[k]);
                         cnt += 1;
                     }
