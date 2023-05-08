@@ -12,7 +12,7 @@ def solution(triangle):
             if j==0:
                 dp[i][j] = dp[i-1][j] + triangle[i][j]
             elif j==i:
-                dp[ij][j] = dp[i-1][j-1] + triangle[i][j]
+                dp[i][j] = dp[i-1][j-1] + triangle[i][j]
             else:
                 dp[i][j] = max(dp[i-1][j-1],dp[i-1][j])+triangle[i][j]
 
