@@ -1,7 +1,6 @@
 # 세번 이하의 이동으로 2개 이상의 사과를 먹으면 1 아니면 0
 
 from collections import deque
-global flag
 
 graph=[]
 for i in range(5):
@@ -12,15 +11,20 @@ x,y=map(int,input().split(" "))
 dx = [-1,1,0,0]
 dy= [0,0,1,-1]
 
-def bfs(x,y,apple,depth=0):
+
+visited = [[False] * 5 for _ in range(5)]
+apple_count = 0
+
+
+def dfs(x,y,graph,depth,count):
 
     queue = deque()
     queue.append((x,y))
 
-    if depth >= 3 and apple >= 2:
+    if depth <= 3 and count >= 2:
         flag = True
         return 
-    if depth >= 3 and apple < 2:
+    if depth >= 3 and count < 2:
         return
     
     while(queue):
@@ -36,14 +40,14 @@ def bfs(x,y,apple,depth=0):
                     continue
                 if graph[nx][ny] == 1:
                     graph[nx][ny] = -1
-                    bfs(nx,ny,apple+1,depth+1)
+                    dfs(nx,ny,count+1,depth+1)
                 if graph[nx][ny] == 0:
                     graph[nx][ny] = -1
-                    bfs(nx,ny,apple,depth+1)
+                    dfs(nx,ny,count,depth+1)
     
     if depth == 0:
         if flag:
             return 1
         return 0
 
-print(bfs(x,y,0,0))
+print(dfs(x,y,0,0))
